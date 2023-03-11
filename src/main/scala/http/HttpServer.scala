@@ -1,5 +1,5 @@
 package com.mucciolo
-package http.server
+package http
 
 import config.ServerConfig
 
