@@ -10,7 +10,7 @@ import ch.megard.akka.http.cors.scaladsl.CorsDirectives._
 
 object HttpRoutes {
 
-  def build(userService: UserService): Route = {
+  def apply(userService: UserService): Route = {
 
     val userRoutes = UserRoutes.build(userService)
 
@@ -19,7 +19,7 @@ object HttpRoutes {
         pathPrefix("api" / "v1") {
           userRoutes
         },
-        pathPrefix("healthcheck") {
+        pathPrefix("ready") {
           get {
             complete("OK")
           }

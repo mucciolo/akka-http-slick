@@ -2,8 +2,7 @@ package com.mucciolo
 
 import config.Config
 import core.impl.UserServiceImpl
-import http.HttpRoutes
-import http.server.HttpServer
+import http.{HttpRoutes, HttpServer}
 import repository.UserRepository
 import repository.impl.SlickUserRepository
 import util.DatabaseMigrator
@@ -34,7 +33,7 @@ object HttpServerApp extends App {
 
     val userRepository: UserRepository = new SlickUserRepository()(slickSession)
     val userService = new UserServiceImpl(userRepository)
-    val routes: Route = HttpRoutes.build(userService)
+    val routes: Route = HttpRoutes(userService)
 
     HttpServer.runForever(config.server, routes)
 
